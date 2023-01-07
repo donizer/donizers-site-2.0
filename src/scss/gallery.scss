@@ -1,0 +1,46 @@
+.gallery {
+
+	margin: 8px;
+
+	display: grid;
+    grid-gap: 8px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+	grid-auto-rows: 220px;
+    grid-auto-flow: dense;
+
+	&__item {
+
+		display: flex;
+
+		position: relative;
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+
+	&__item-desc {
+		background-color: #fff;
+		padding: 4px;
+		position: absolute;
+		bottom: 16px;
+		right: 16px;
+
+		font-size: 32px;
+	}
+
+	.horizontal {
+		grid-column: span 2;
+	}
+	
+	.vertical {
+		grid-row: span 2;
+	}
+	
+	.big {
+		grid-column: span 2;
+		grid-row: span 2;
+	}
+
+}

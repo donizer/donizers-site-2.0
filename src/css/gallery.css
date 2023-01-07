@@ -1,0 +1,35 @@
+.gallery {
+  margin: 8px;
+  display: grid;
+  grid-gap: 8px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-auto-rows: 220px;
+  grid-auto-flow: dense;
+}
+.gallery__item {
+  display: flex;
+  position: relative;
+}
+.gallery__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.gallery__item-desc {
+  background-color: #fff;
+  padding: 4px;
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  font-size: 32px;
+}
+.gallery .horizontal {
+  grid-column: span 2;
+}
+.gallery .vertical {
+  grid-row: span 2;
+}
+.gallery .big {
+  grid-column: span 2;
+  grid-row: span 2;
+}

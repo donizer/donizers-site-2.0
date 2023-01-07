@@ -1,0 +1,174 @@
+@import '_zero.scss';
+
+body{
+	background-color: #4158D0;
+	background: linear-gradient(72.44deg, #4158D0 -12.72%, #C850C0 24.78%, #FFCC70 125.46%);
+    background-size: cover;
+	background-position: 50% 25%;
+	background-attachment: fixed;
+
+}
+
+.Inter-head {
+	font-family: 'Montserrat';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 32px;
+	line-height: 39px;
+	color: white;
+	a{
+		color: white;
+	}
+}
+
+.wrapper {
+	height: 100%;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, 1fr);
+    grid-template-rows: 80px auto 80px;
+}
+
+header {
+	background-color: #24252B;
+	width: 100%;
+	padding: 0 8px 0;
+
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	.logo {
+		&__name {
+			display: block;
+			text-align: end;
+		}
+	}
+
+	nav {
+		display: flex;
+		gap: 36px;
+	}
+}
+
+main {
+	display: grid;
+	grid-template-columns: minmax(192px, 1fr) 11fr;
+	grid-template-rows: 1fr;
+
+	
+
+	.aside {
+		
+		background: linear-gradient(180deg, #24252A 0%, #412C56 100%);
+	}
+
+	.content {
+
+		// background-color: #000;
+
+	}
+
+}
+
+footer {
+	background-color: #412C56;
+	width: 100%;
+}
+
+
+
+.switch {
+	position: relative;
+	width: 60px;
+	height: 25px;
+
+	
+	
+	#switch1,
+	#switch2, 
+	#switch3 {
+	  position: absolute;
+	  z-index:9;
+	  -webkit-appearance: none;
+	  
+	  & + label {
+		&::after {
+		  position: absolute;
+		  content: "";
+		  width: 20px; height: 25px;
+		  top: 0; left: 0; z-index: 10;
+		}
+	  }
+	}
+	#switch1 {
+	  & + label {
+		&::after {
+		  left: 0;
+		}
+	  }
+	  &:checked {
+		& ~ .switch__inner {
+		  background-color: red;
+		  transition: background-color 200ms ease-in-out;
+		  &::after {
+			left: 0;
+			transition: left 200ms ease-in-out;
+		  }
+		}
+	  }
+	}
+	#switch2 {
+	  & + label {
+		&::after {
+		  left: 20px;
+		}
+	  }
+	  &:checked {
+		& ~ .switch__inner {
+		  background-color: #fff;
+		  transition: background-color 200ms ease-in-out;
+		  &::after {
+			left: 20px;
+			transition: left 200ms ease-in-out;
+		  }
+		}
+	  }
+	}
+	#switch3 {
+	  & + label {
+		&::after {
+		  left: 40px;
+		}
+	  }
+	  &:checked {
+		& ~ .switch__inner {
+		  background-color: green;
+		  transition: background-color 200ms ease-in-out;
+		  &::after {
+			left: 40px;
+			transition: left 200ms ease-in-out;
+		  }
+		}
+	  }
+	}
+  
+	&__inner {
+	  width: 60px;
+	  height: 25px;
+	  background-color: #fff;
+	  border: solid 1px grey;
+	  border-radius: 4px;
+	  
+	  &::after {
+		position: absolute;
+		display: block;
+		content:"";
+		width: 20px; height: 25px;
+		top: 0; left: 0;
+		background-color: #eee;
+		border: solid 1px grey;
+		border-radius: 4px;
+		transition: left 200ms ease-in-out;
+	  }
+	}
+  }
