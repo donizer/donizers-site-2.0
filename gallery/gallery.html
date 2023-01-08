@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" href="../src/img/favicon.svg">
 	<link rel="stylesheet" href="../src/css/style.css">
 	<link rel="stylesheet" href="../src/css/gallery.css">
 
@@ -16,12 +17,13 @@
 	<div class="wrapper">
 		<header class="Inter-head">
 			<div class="logo">
-				<a class="logo__name" href="../index.html">donizer's <br>site</a>
+				<a class="logo__name" href="../index.html"><span>donizer's <br>site</span></a>
 			</div>
-			<nav>
-				<a href="../index.html">Home</a>
-				<a href="gallery.html">Gallery</a>
-				<a href="../polygon/polygon.html">Polygon</a>
+			<div class="burger" onclick="burgerButton(this);"><div></div></div>
+			<nav id="nav">
+				<a href="../index.html"><span>Home</span></a>
+				<a class="active" href="gallery.html"><span>Gallery</span></a>
+				<a href="../polygon/polygon.html"><span>Polygon</span></a>
 			</nav>
 		</header>	
 
@@ -30,9 +32,8 @@
 				<!-- TODO -->
 				<!-- <form action=""> 
 					<input type="text" placeholder="Enter tag...">
-					<br><label for="nPosts">Number of posts:</label>
-					<input type="number">
 					<input type="submit" value="Submit"> 
+					<br><label for="nPosts">Number of posts:</label>
 					<br><label for="isGay">Is Gay:</label> 
 					<input type="radio" name="" id="">
 					<input type="radio" name="" id="">
@@ -262,4 +263,5 @@
 		</footer>
 	</div>
 </body>
+<script src="/src/js/script.js"></script>
 </html>
