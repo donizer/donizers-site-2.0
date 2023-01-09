@@ -77,7 +77,13 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: inherit;
 }
 
-body {
+.background {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: -99;
+  width: 1000%;
+  height: 1000%;
   background-color: #4158D0;
   background: linear-gradient(72.44deg, #4158D0 -12.72%, #C850C0 24.78%, #FFCC70 125.46%);
   background-size: cover;
