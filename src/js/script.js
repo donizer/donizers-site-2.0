@@ -1,6 +1,8 @@
-function burgerButton(e) {
+function burgerButton() {
 	let nav = document.getElementById('nav');
-	console.log(e.classList.length);
+	let mBack = document.getElementById('mBack');
+	let burgerBtn = document.getElementById('burgerBtn');
 	nav.classList.toggle('active');
-	e.classList.toggle('active');
+	mBack.classList.toggle('active');
+	burgerBtn.classList.toggle('active');
 }

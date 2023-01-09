@@ -85,7 +85,7 @@ body {
   background-attachment: fixed;
 }
 
-@media screen and (min-width: 320px) {
+@media screen and (max-width: 320px) {
   .wrapper {
     height: 100%;
     display: grid;
@@ -101,13 +101,28 @@ body {
   .Inter-head a {
     color: white;
   }
+  #mBack {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    display: none;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.3215686275);
+    content: "";
+    height: 100%;
+    width: 100%;
+  }
+  #mBack.active {
+    display: block;
+    opacity: 1;
+  }
   header {
+    position: relative;
     background-color: #24252B;
     width: 100%;
     padding: 0 8px 0;
-    display: flex;
-    justify-content: end;
-    align-items: center;
   }
   header .logo {
     position: absolute;
@@ -150,7 +165,7 @@ body {
     left: 152px;
   }
   header .burger {
-    z-index: 2;
+    z-index: 4;
     position: absolute;
     top: 28px;
     right: -8px;
@@ -176,18 +191,19 @@ body {
     transform: scale(0);
   }
   header nav {
-    z-index: 1;
+    z-index: 3;
     transition: all 0.175s ease;
     position: fixed;
-    top: 0px;
-    right: -140px;
     display: flex;
     flex-direction: column;
     background: linear-gradient(180deg, #24252A 0%, #412C56 100%);
-    align-items: flex-start;
-    width: 140px;
+    right: -152px;
+    width: 152px;
     height: 100%;
     gap: 12px;
+  }
+  header nav.active {
+    right: 0px;
   }
   header nav a {
     margin: 8px;
@@ -235,20 +251,239 @@ body {
   header nav a:hover span {
     color: #24252B;
   }
+}
+@media screen and (min-width: 321px) {
+  .wrapper {
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 1fr);
+    grid-template-rows: 60px auto 40px;
+  }
+  .Inter-head {
+    font-family: "Montserrat";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 28px;
+  }
+  .Inter-head a {
+    color: white;
+  }
+  #mBack {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    display: none;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.3215686275);
+    content: "";
+    height: 100%;
+    width: 100%;
+  }
+  #mBack.active {
+    display: block;
+    opacity: 1;
+  }
+  header {
+    position: relative;
+    background-color: #24252B;
+    width: 100%;
+    padding: 0 8px 0;
+  }
+  header .logo {
+    position: absolute;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    left: 8px;
+    font-size: 32px;
+    height: 60px;
+    width: 144px;
+  }
+  header .logo__name {
+    display: block;
+    text-align: end;
+  }
+  header .logo span {
+    position: relative;
+    z-index: 2;
+    transition: all 0.1s ease;
+    color: #24252B;
+  }
+  header .logo::before, header .logo::after {
+    display: block;
+    position: absolute;
+    content: "";
+    top: 0;
+    z-index: 1;
+    transition: all 0.175s ease;
+  }
+  header .logo::before {
+    background-color: #FFB800;
+    width: 202px;
+    height: 100%;
+    left: -44px;
+  }
+  header .logo::after {
+    background-color: #fff;
+    width: 8px;
+    height: 100%;
+    left: 152px;
+  }
+  header .burger {
+    z-index: 4;
+    position: absolute;
+    top: 28px;
+    right: -8px;
+    transform: translate(-50%, -50%);
+    width: 50px;
+  }
+  header .burger::before, header .burger::after, header .burger div {
+    background: #fff;
+    content: "";
+    display: block;
+    height: 6px;
+    border-radius: 3px;
+    margin: 7px 0;
+    transition: 0.5s;
+  }
+  header .burger.active::before {
+    transform: translateY(12px) rotate(135deg);
+  }
+  header .burger.active::after {
+    transform: translateY(-12px) rotate(-135deg);
+  }
+  header .burger.active div {
+    transform: scale(0);
+  }
+  header nav {
+    z-index: 3;
+    transition: all 0.175s ease;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(180deg, #24252A 0%, #412C56 100%);
+    right: -152px;
+    width: 152px;
+    height: 100%;
+    gap: 12px;
+  }
   header nav.active {
-    right: 0;
+    right: 0px;
+  }
+  header nav a {
+    margin: 8px;
+    position: relative;
+    display: block;
+    width: max-content;
+  }
+  header nav a:first-child {
+    margin-top: 60px;
+  }
+  header nav a span {
+    position: relative;
+    z-index: 2;
+    transition: all 0.1s ease;
+  }
+  header nav a::before, header nav a::after {
+    display: block;
+    position: absolute;
+    content: "";
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    transition: all 0.1s ease;
+  }
+  header nav a::before {
+    background-color: #FFB800;
+    width: 100%;
+    height: 0%;
+  }
+  header nav a::after {
+    background-color: #fff;
+    width: 100%;
+    height: 0px;
+  }
+  header nav a.active::after {
+    height: 2px;
+  }
+  header nav a:hover::before {
+    height: 100%;
+  }
+  header nav a:hover::after {
+    bottom: 100%;
+    height: 4px;
+  }
+  header nav a:hover span {
+    color: #24252B;
+  }
+}
+@media screen and (min-width: 426px) {
+  header nav {
+    right: -204px;
+    width: 204px;
+  }
+}
+@media screen and (min-width: 769px) {
+  .wrapper {
+    grid-template-rows: 80px auto 60px;
+  }
+  .Inter-head {
+    font-size: 32px;
+  }
+  #mBack.active {
+    display: none;
+    opacity: 0;
+  }
+  header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  header .logo {
+    height: 100%;
+  }
+  header .logo span {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+  }
+  header .logo::before {
+    left: -210px;
+  }
+  header .logo::after {
+    left: -16px;
+  }
+  header .logo:hover::before {
+    left: -20px;
+  }
+  header .logo:hover::after {
+    left: 176px;
+  }
+  header .logo:hover span {
+    color: #24252B;
+  }
+  header .burger {
+    display: none;
+  }
+  header nav {
+    transition: all 0.175s ease;
+    position: static;
+    flex-direction: row;
+    background: initial;
+    width: initial;
+    height: initial;
   }
   header nav::before {
     display: none;
-    opacity: 0;
-    z-index: -2;
-    top: 0;
-    right: 0;
-    background-color: rgba(126, 126, 126, 0.4862745098);
-    position: absolute;
-    content: "";
-    height: 100%;
-    width: 1000%;
+  }
+  header nav a:first-child {
+    margin-top: 8px;
+  }
+  header nav a.active::after {
+    height: 4px;
   }
 }
 main a, footer a {
@@ -321,7 +556,6 @@ footer {
 .switch #switch3 {
   position: absolute;
   z-index: 9;
-  -webkit-appearance: none;
 }
 .switch #switch1 + label::after,
 .switch #switch2 + label::after,
