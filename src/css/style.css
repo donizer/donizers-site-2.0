@@ -77,19 +77,14 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: inherit;
 }
 
-.background {
-  position: absolute;
-  overflow: hidden;
-  top: 0;
-  right: 0;
-  z-index: -99;
-  width: 1000%;
-  height: 1000%;
+body {
   background-color: #4158D0;
   background: linear-gradient(72.44deg, #4158D0 -12.72%, #C850C0 24.78%, #FFCC70 125.46%);
   background-size: cover;
   background-position: 50% 25%;
   background-attachment: fixed;
+  padding-bottom: 100px;
+  margin-bottom: -100px;
 }
 
 @media screen and (max-width: 320px) {
@@ -551,6 +546,10 @@ main .content {
 footer {
   background-color: #412C56;
   width: 100%;
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  height: 60px;
 }
 
 .switch {
