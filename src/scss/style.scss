@@ -1,5 +1,13 @@
 @import '_zero.scss';
 
+
+html {
+	background-color: #4158D0;
+	background: linear-gradient(72.44deg, #4158D0 -12.72%, #C850C0 24.78%, #FFCC70 125.46%);
+    background-size: cover;
+	background-position: 50% 25%;
+	background-attachment: fixed;
+}
 body{
 	// background-color: #4158D0;
 	// background: linear-gradient(72.44deg, #4158D0 -12.72%, #C850C0 24.78%, #FFCC70 125.46%);
@@ -8,6 +16,7 @@ body{
 	// background-attachment: fixed;
 }
 .background {
+	display: none;
 	z-index: -99;
 	top: 0;
 	left: 0;
@@ -17,11 +26,7 @@ body{
 	background-color: #fff;
 	overflow: hidden;
 
-	background-color: #4158D0;
-	background: linear-gradient(72.44deg, #4158D0 -12.72%, #C850C0 24.78%, #FFCC70 125.46%);
-    background-size: cover;
-	background-position: 50% 25%;
-	background-attachment: fixed;
+	
 }
 
 @media screen and (max-width: 320px) { // mobile S
