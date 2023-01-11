@@ -273,14 +273,6 @@ body {
     right: -204px;
     width: 204px;
   }
-  main {
-    overflow-x: hidden;
-    height: 100%;
-    display: grid;
-    grid-template-columns: 0px 6fr;
-    grid-template-rows: auto;
-    transition: all 0.175s ease;
-  }
   main.active {
     grid-template-columns: 192px 1fr;
   }

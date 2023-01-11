@@ -8,7 +8,7 @@ body{
 	background-attachment: fixed;
 }
 
-@media screen and (min-width: 50px) { // mobile S - M
+@media screen and (min-width: 50px) {   // mobile S - M
 	// @import 'min321.scss';
 	.wrapper {
 		min-height: 100%;
@@ -89,7 +89,6 @@ body{
 				left: 176px;
 			} 	
 		}
-
 		.burger {
 			z-index: 4;
 			position: absolute;
@@ -118,7 +117,6 @@ body{
 				}
 			}
 		}
-
 		nav {
 			z-index: 3;
 			transition: all 0.175s ease;
@@ -203,10 +201,10 @@ body{
 		}
 	}
 }
-@media screen and (min-width: 376px) { // mobile L
+@media screen and (min-width: 376px) {  // mobile L
 	// @import 'min376.scss';
 }
-@media screen and (min-width: 426px) { // tablet
+@media screen and (min-width: 426px) {  // tablet
 	header {
 
 		nav {
@@ -215,12 +213,6 @@ body{
 		} 
 	}
 	main {
-		overflow-x: hidden;
-		height: 100%;
-		display: grid;
-		grid-template-columns: 0px 6fr;
-		grid-template-rows: auto;
-		transition: all 0.175s ease;
 		&.active {
 			grid-template-columns: 192px 1fr;
 		}
@@ -234,7 +226,7 @@ body{
 		}
 	}
 }
-@media screen and (min-width: 769px) { // laptop
+@media screen and (min-width: 769px) {  // laptop
 	// @import 'min769.scss';
 	.wrapper {
 		grid-template-rows: 80px auto 60px;
