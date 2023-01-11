@@ -17,13 +17,13 @@
 	<div class="wrapper">
 		<header class="Inter-head">
 			<div class="logo">
-				<a class="logo__name" href="../index.html"><span>donizer's <br>site</span></a>
+				<a class="logo__name" href="../"><span>donizer's <br>site</span></a>
 			</div>
 			<div class="burger" id="burgerBtn" onclick="burgerButton(this);"><div></div></div>
 			<nav id="nav">
-				<a href="../index.html"><span>Home</span></a>
-				<a class="active" href="gallery.html"><span>Gallery</span></a>
-				<a href="../polygon/polygon.html"><span>Polygon</span></a>
+				<a href="../"><span>Home</span></a>
+				<a href="#" class="active"><span>Gallery</span></a>
+				<a href="../polygon/"><span>Polygon</span></a>
 			</nav>
 		</header>	
 
@@ -50,25 +50,25 @@
 			</div>
 			<div class="content">
 				<div class="gallery">
-					<div class="gallery__item vertical">
+					<div class="gallery__item vertical " onclick="galleryPreview(this)">
 						<img src="https://cdn.discordapp.com/attachments/884129079027200050/1061364450071949362/Ono8sYfC9ts.jpg" alt="">
 						<div class="gallery__item-desc">
 							<p>Girl taking her adnvace over another</p>
 						</div>
 					</div>
-					<div class="gallery__item big">
+					<div class="gallery__item big " onclick="galleryPreview(this)">
 						<img src="https://cdn.discordapp.com/attachments/884129079027200050/1061364450499764315/0002.png" alt="">
 						<div class="gallery__item-desc">
 							<p>123</p>
 						</div>
 					</div>
-					<div class="gallery__item vertical">
+					<div class="gallery__item vertical" onclick="galleryPreview(this)">
 						<img src="https://cdn.discordapp.com/attachments/884129079027200050/1061364450931781735/h-Ln2LsXqI8.jpg" alt="">
 						<div class="gallery__item-desc">
 							<p>123</p>
 						</div>
 					</div>
-					<div class="gallery__item">
+					<div class="gallery__item" onclick="galleryPreview(this)">
 						<img src="https://cdn.discordapp.com/attachments/884129079027200050/1061364451481231501/gAFmZKckcxA.jpg" alt="">
 						<div class="gallery__item-desc">
 							<p>123</p>
@@ -86,7 +86,7 @@
 							<p>123</p>
 						</div>
 					</div>
-					<div class="gallery__item">
+					<div class="gallery__item ">
 						<img src="https://cdn.discordapp.com/attachments/884129079027200050/1061364452848574544/6OTVTYB9nt8.jpg" alt="">
 						<div class="gallery__item-desc">
 							<p>123</p>
@@ -262,8 +262,14 @@
 			
 		</footer>
 	</div>
+
 	<div id="mBack" onclick="burgerButton();"></div>
+	<div id="gBack" class="" onclick="galleryPreview();">
+		<!-- <img src="https://cdn.discordapp.com/attachments/884129079027200050/1061364450499764315/0002.png" alt=""> -->
+	</div>
+
 	<script src="../src/js/script.js"></script>
+	<script src="../src/js/gallery.js"></script>
 	<script src="../src/js/swiped-events.min.js"></script>
 </body>
 

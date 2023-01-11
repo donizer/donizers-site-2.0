@@ -1,19 +1,32 @@
 .gallery {
+  position: relative;
   margin: 8px;
   display: grid;
   grid-gap: 8px;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   grid-auto-rows: minmax(220px, 260px);
   grid-auto-flow: dense;
+  transition: all 0.175s ease;
 }
 .gallery__item {
   display: flex;
   position: relative;
+  transform: translateX(0%);
 }
 .gallery__item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+.gallery__item.horizontal {
+  grid-column: span 2;
+}
+.gallery__item.vertical {
+  grid-row: span 2;
+}
+.gallery__item.big {
+  grid-column: span 2;
+  grid-row: span 2;
 }
 .gallery__item-desc {
   background-color: #fff;
@@ -23,21 +36,39 @@
   right: 16px;
   font-size: 32px;
 }
-.gallery .horizontal {
-  grid-column: span 2;
+
+#gBack {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  display: none;
+  background-color: rgba(0, 0, 0, 0.3215686275);
+  content: "";
+  height: 100%;
+  width: 100%;
 }
-.gallery .vertical {
-  grid-row: span 2;
+#gBack.active {
+  display: block;
+  opacity: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.gallery .big {
-  grid-column: span 2;
-  grid-row: span 2;
+#gBack img {
+  position: fixed;
+  z-index: 3;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
 }
 
 @media screen and (max-width: 320px) {
   .gallery {
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    grid-auto-rows: minmax(100px, 120px);
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    grid-auto-rows: minmax(40px, 80px);
   }
   .gallery__item-desc {
     background-color: rgba(255, 255, 255, 0.6);
@@ -52,7 +83,7 @@
 @media screen and (min-width: 321px) {
   .gallery {
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    grid-auto-rows: minmax(100px, 120px);
+    grid-auto-rows: minmax(100px, 160px);
   }
   .gallery__item-desc {
     background-color: rgba(255, 255, 255, 0.6);
@@ -61,5 +92,11 @@
     bottom: 16px;
     right: 16px;
     font-size: 24px;
+  }
+}
+@media screen and (min-width: 769px) {
+  .gallery__item.active {
+    width: inherit;
+    max-width: 100%;
   }
 }
