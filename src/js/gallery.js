@@ -15,21 +15,20 @@ function galleryPreview(e) {
 
 	if (counter%2 != 0) {
 		let media = e.firstElementChild;
-		console.log(media.firstElementChild.attributes["src"].value)
 
-		if (media.localName === "video") {
-			let link = media.firstElementChild.attributes["src"].value;
+		if (media.localName === "img") {
+			let link = media.attributes["src"].value;
+			let node = document.createElement("img");
+			node.setAttribute('src', link);
+			gBack.appendChild(node);
+		} else {
+			let link = media.firstElementChild.firstElementChild.attributes["src"].value;
 			let node = document.createElement("video");
 			node.setAttribute('src', link);
 			node.autoplay = true;
 			// node.muted = true;
 			node.loop = true;
 			node.preload = 'metadata'
-			gBack.appendChild(node);
-		} else {
-			let link = media.attributes[0].value;
-			let node = document.createElement("img");
-			node.setAttribute('src', link);
 			gBack.appendChild(node);
 		}
 

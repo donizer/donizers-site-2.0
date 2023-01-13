@@ -1,56 +1,3 @@
-.gallery {
-  position: relative;
-  margin: 8px;
-  display: grid;
-  grid-gap: 8px;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  grid-auto-rows: minmax(220px, 260px);
-  grid-auto-flow: dense;
-  transition: all 0.175s ease;
-}
-.gallery__item {
-  display: flex;
-  position: relative;
-  top: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  transform: translateX(0%);
-}
-.gallery__item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.gallery__item video {
-  /* Make video to at least 100% wide and tall */
-  min-width: 50%;
-  min-height: 50%;
-  /* Setting width & height to auto prevents the browser from stretching or squishing the video */
-  width: 100%;
-  height: 100%;
-  /* Center the video */
-}
-.gallery__item.horizontal {
-  grid-column: span 2;
-}
-.gallery__item.vertical {
-  grid-row: span 2;
-}
-.gallery__item.big {
-  grid-column: span 2;
-  grid-row: span 2;
-}
-.gallery__item-desc {
-  background-color: #fff;
-  padding: 4px;
-  position: absolute;
-  bottom: 16px;
-  right: 16px;
-  font-size: 32px;
-}
-
 #gBack {
   position: fixed;
   z-index: 100;
@@ -86,33 +33,73 @@
   object-fit: cover;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (min-width: 50px) {
   .gallery {
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    grid-auto-rows: minmax(40px, 80px);
+    position: relative;
+    margin: 8px;
+    display: grid;
+    grid-gap: 8px;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    grid-auto-rows: minmax(70px, 140px);
+    grid-auto-flow: dense;
+    transition: all 0.175s ease;
+  }
+  .gallery__item {
+    position: relative;
+  }
+  .gallery__item .media__container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  .gallery__item .media__container video {
+    /* Make video to at least 100% wide and tall */
+    min-width: 100%;
+    min-height: 100%;
+    /* Setting width & height to auto prevents the browser from stretching or squishing the video */
+    width: auto;
+    height: auto;
+    /* Center the video */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .gallery__item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .gallery__item.horizontal {
+    grid-column: span 2;
+  }
+  .gallery__item.vertical {
+    grid-row: span 2;
+  }
+  .gallery__item.big {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+  .gallery__item.big video {
+    height: 100%;
+  }
+  .gallery__item.big-sqv {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+  .gallery__item.big-sqv video {
+    width: 100%;
   }
   .gallery__item-desc {
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.5);
     padding: 4px;
     position: absolute;
-    bottom: 4px;
-    right: 4px;
+    bottom: 8px;
+    right: 8px;
     font-size: 14px;
-    margin-left: -4px;
-  }
-}
-@media screen and (min-width: 321px) {
-  .gallery {
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    grid-auto-rows: minmax(80px, minmax(1fr, auto));
-  }
-  .gallery__item-desc {
-    background-color: rgba(255, 255, 255, 0.6);
-    padding: 4px;
-    position: absolute;
-    bottom: 16px;
-    right: 16px;
-    font-size: 24px;
   }
 }
 @media screen and (min-width: 769px) {
