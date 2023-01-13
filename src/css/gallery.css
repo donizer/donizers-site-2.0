@@ -83,14 +83,18 @@
     grid-column: span 2;
     grid-row: span 2;
   }
-  .gallery__item.big video {
-    height: 100%;
-  }
-  .gallery__item.big-sqv {
+  .gallery__item.big-video {
     grid-column: span 2;
     grid-row: span 2;
   }
-  .gallery__item.big-sqv video {
+  .gallery__item.big-video video {
+    height: 100%;
+  }
+  .gallery__item.big-video-sqv {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+  .gallery__item.big-video-sqv video {
     width: 100%;
   }
   .gallery__item-desc {
