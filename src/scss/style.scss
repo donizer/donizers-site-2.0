@@ -6,6 +6,10 @@ body{
     background-size: cover;
 	background-position: 50% 25%;
 	background-attachment: fixed;
+
+	&.noscroll{
+		overflow: hidden;
+	}
 }
 
 @media screen and (min-width: 50px) {   // mobile S - M

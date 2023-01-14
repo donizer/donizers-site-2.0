@@ -26,7 +26,8 @@
 	}
 }
 
-@media screen and (max-width: 425px) and (orientation:portrait)  {
+
+@media screen and (orientation:portrait)  {
 	#gBack {
 		img.horizontal, video.horizontal {
 			transform: rotate(90deg);

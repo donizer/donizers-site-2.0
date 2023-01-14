@@ -67,7 +67,8 @@ getJSON().then(response => {
 			isMP4 = format === 'mp4',
 			owner = response[i]['owner'],
 			anySample = !!response[i]['sample'];
-			
+		
+
 			if (isMP4) {
 				file_url = `https://api-cdn.rule34.xxx/images/${dir}/${image}`;
 			} else {

@@ -84,6 +84,9 @@ body {
   background-position: 50% 25%;
   background-attachment: fixed;
 }
+body.noscroll {
+  overflow: hidden;
+}
 
 @media screen and (min-width: 50px) {
   .wrapper {

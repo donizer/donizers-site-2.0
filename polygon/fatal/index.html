@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" href="../../src/img/favicon.svg">
+	<link rel="stylesheet" href="../../src/css/style.css">
+	<link rel="stylesheet" href="../../src/css/gallery.css">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+	<title>donizer's site 2.0</title>
+</head>
+<body>
+	<div class="wrapper">
+		<header class="Inter-head">
+			<div class="logo">
+				<a class="logo__name" href="../"><span>donizer's <br>site</span></a>
+			</div>
+			<div class="burger" id="burgerBtn" onclick="burgerButton(this);"><div></div></div>
+			<nav id="nav">
+				<a href="../../"><span>Home</span></a>
+				<a href="../../gallery/"><span>Gallery</span></a>
+				<a href="../"><span>Polygon</span></a>
+			</nav>
+		</header>	
+
+		<main>
+			<div class="aside">
+
+			</div>
+			<div class="content">
+				<div id="gallery" class="gallery">
+
+				</div>
+			</div>
+		</main>
+
+		<footer>
+			
+		</footer>
+	</div>
+
+	<div id="mBack" onclick="burgerButton();"></div>
+	<div id="gBack" class="" onclick="galleryPreview();">
+		<!-- <img src="https://cdn.discordapp.com/attachments/884129079027200050/1061364450499764315/0002.png" alt=""> -->
+	</div>
+
+
+
+	<script src="../../src/js/script.js"></script>
+	<!-- <script src="../../src/js/gallery.js"></script> -->
+	<script src="../../src/js/swiped-events.min.js"></script>
+	<script src="fatal.js"></script>
+</body>
+
+</html>

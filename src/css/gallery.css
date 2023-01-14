@@ -24,7 +24,7 @@
   object-fit: cover;
 }
 
-@media screen and (max-width: 425px) and (orientation: portrait) {
+@media screen and (orientation: portrait) {
   #gBack img.horizontal, #gBack video.horizontal {
     transform: rotate(90deg);
     scale: 1.75;

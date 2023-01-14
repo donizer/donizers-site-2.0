@@ -7,6 +7,9 @@ const baseApiURL = 'https://api.rule34.xxx/index.php?page=dapi&s=post&q=index&js
 
 let r34Api = `${baseApiURL}&tags=rating:safe`;
 
+let fatalLink = 'https://raw.githubusercontent.com/donizer/staff/main/libraries/fatal.json';
+
+
 let r1 = 0.85;
 let r2 = 1.5;
 
@@ -22,6 +25,8 @@ function galleryPreview(e) {
 	gBack.classList.toggle('active');
 	body.classList.toggle('noscroll');
 
+	console.log(e)
+
 	if (counter%2 != 0) {
 		let media = e.firstElementChild.firstElementChild;
 		const 
@@ -31,7 +36,7 @@ function galleryPreview(e) {
 
 		console.log(itemClass);
 
-		if (isMP4 == false) {
+		if (true) {
 			let node = document.createElement("img");
 			node.setAttribute('src', file_url);
 			node.classList.add(itemClass);
@@ -105,89 +110,28 @@ function createGalleryItem(w, h, preview_url, sample_url, file_url, owner, isMP4
 
 }
 
-getJSON(url).then(response => {
+getJSON(fatalLink).then(response => {
 
-	console.log(response); // fetched movies
-	for(let i = 0; i < 100; i++) {
-		const dir = response[i]['directory'],
-			image = response[i]['image'],
-			hash = response[i]['hash'],
-			score = response[i]['score'],
-			format = response[i]['image'].split('.')[response[0]['image'].split('.').length-1],
-			fileName = response[i]['image'].split('.')[0],
-			isMP4 = format === 'mp4',
-			owner = response[i]['owner'],
-			anySample = !!response[i]['sample'];
+
+
+
+	// console.log(img.src); // fetched movies
+
+
+	for(let i = 0; i < response.length; i++) {
+
+		const url = response[i]['url'];
+
+		const img = new Image();
+		img.src = url;
+	
+		img.onload = function() {
+			console.log(this.width + ' ' + this.height)
+
+			createGalleryItem(this.width, this.height, url, url, url, "fatal", "false", '');	
+		}
 			
-			if (isMP4) {
-				file_url = `https://api-cdn.rule34.xxx/images/${dir}/${image}`;
-			} else {
-				file_url = response[i]['file_url'];
-			}
-			preview_url = response[i]['preview_url'];
-			sample_url = response[i]['sample_url'];
-		const
-			w = response[i]['width'],
-			h = response[i]['height'];
-			
-		createGalleryItem(w, h, preview_url, sample_url, file_url, owner, isMP4, anySample);		
+	
 	}
 		
 });
-
-
-
-
-
-// 0.7
-// 0.84
-// 1.07
-// 1.43
-
-
-
-// let r1 = 0.7;
-// let r2 = 0.84;
-// let r3 = 1.07;
-// let r4 = 1.43;
-
-
-
-// a = 480;
-// b = 650;
-// // 0.7
-// console.log(`${a}/${b} = ${a/b} > ${r1} : ${a/b > r1}`)
-// console.log(`${a}/${b} = ${a/b} > ${r2} : ${a/b > r2}`)
-// console.log(`${a}/${b} = ${a/b} > ${r3} : ${a/b > r3}`)
-// console.log(`${a}/${b} = ${a/b} > ${r4} : ${a/b > r4}`)
-
-// console.log('#####################')
-
-// a = 550;
-// b = 650;
-// // 0.84
-// console.log(`${a}/${b} = ${a/b} > ${r1} : ${a/b > r1}`)
-// console.log(`${a}/${b} = ${a/b} > ${r2} : ${a/b > r2}`)
-// console.log(`${a}/${b} = ${a/b} > ${r3} : ${a/b > r3}`)
-// console.log(`${a}/${b} = ${a/b} > ${r4} : ${a/b > r4}`)
-
-// console.log('#####################')
-
-
-// a = 700;
-// b = 650;
-// // 1.07
-// console.log(`${a}/${b} = ${a/b} > ${r1} : ${a/b > r1}`)
-// console.log(`${a}/${b} = ${a/b} > ${r2} : ${a/b > r2}`)
-// console.log(`${a}/${b} = ${a/b} > ${r3} : ${a/b > r3}`)
-// console.log(`${a}/${b} = ${a/b} > ${r4} : ${a/b > r4}`)
-
-// console.log('#####################')
-
-// a = 935;
-// b = 650;
-// // 1.43
-// console.log(`${a}/${b} = ${a/b} > ${r1} : ${a/b > r1}`)
-// console.log(`${a}/${b} = ${a/b} > ${r2} : ${a/b > r2}`)
-// console.log(`${a}/${b} = ${a/b} > ${r3} : ${a/b > r3}`)
-// console.log(`${a}/${b} = ${a/b} > ${r4} : ${a/b > r4}`)
