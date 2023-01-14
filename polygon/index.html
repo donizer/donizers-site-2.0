@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="icon" href="../src/img/favicon.svg">
 	<link rel="stylesheet" href="../src/css/style.css">
+	<link rel="stylesheet" href="../src/css/gallery.css">
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,8 +32,9 @@
 
 			</div>
 			<div class="content">
-				<video id="video" width="320px" height="144px"></video>
-				<button onclick="play();" id="btn">play</button>
+				<div id="gallery" class="gallery">
+
+				</div>
 			</div>
 		</main>
 
@@ -40,7 +42,11 @@
 			
 		</footer>
 	</div>
+	
 	<div id="mBack" onclick="burgerButton()"></div>
+	<div id="gBack" class="" onclick="galleryPreview();"></div>
+
+	<script src="../src/js/gallery.js"></script>
 	<script src="../src/js/polygon.js"></script>
 	<script src="../src/js/script.js"></script>
 	<script src="../src/js/swiped-events.min.js"></script>

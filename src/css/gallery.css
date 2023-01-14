@@ -83,19 +83,22 @@
     grid-column: span 2;
     grid-row: span 2;
   }
-  .gallery__item.big-video {
+  .gallery__item.video-horizontal {
     grid-column: span 2;
     grid-row: span 2;
   }
-  .gallery__item.big-video video {
+  .gallery__item.video-horizontal video {
     height: 100%;
   }
-  .gallery__item.big-video-sqv {
+  .gallery__item.video-square {
     grid-column: span 2;
     grid-row: span 2;
   }
-  .gallery__item.big-video-sqv video {
+  .gallery__item.video-square video {
     width: 100%;
+  }
+  .gallery__item .url, .gallery__item .type {
+    display: none;
   }
   .gallery__item-desc {
     background-color: rgba(255, 255, 255, 0.5);
