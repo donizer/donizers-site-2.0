@@ -19,7 +19,7 @@ function galleryPreview(e) {
 		const file_url = e.getElementsByClassName('url')[0].innerHTML;
 		console.log(isMP4, file_url);
 
-		if (!isMP4) {
+		if (isMP4 == false) {
 			let node = document.createElement("img");
 			node.setAttribute('src', file_url);
 			gBack.appendChild(node);

@@ -44,7 +44,12 @@ function createGalleryItem(w, h, sample_url, file_url, owner, isMP4) {
 
 		const metaType = document.createElement('p');
 		metaType.classList.add('type');
-		metaType.innerHTML = isMP4;
+		if (isMP4) {
+			metaType.innerHTML = '1';
+		} else {
+			metaType.innerHTML = '';
+		}
+
 		galleryItemDesc.appendChild(metaType);
 
 }
