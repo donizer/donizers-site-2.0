@@ -105,7 +105,7 @@ function createGalleryItem(w, h, preview_url, sample_url, file_url, owner, isMP4
 
 }
 
-getJSON(url).then(response => {
+getJSON(r34Api).then(response => {
 
 	console.log(response); // fetched movies
 	for(let i = 0; i < 100; i++) {
