@@ -15,21 +15,25 @@ function galleryPreview(e) {
 
 	if (counter%2 != 0) {
 		let media = e.firstElementChild.firstElementChild;
-		const isMP4 = !!e.getElementsByClassName('type')[0].innerHTML;
-		const file_url = e.getElementsByClassName('url')[0].innerHTML;
-		console.log(isMP4, file_url);
+		const 
+		isMP4 = !!e.getElementsByClassName('type')[0].innerHTML,
+		file_url = e.getElementsByClassName('url')[0].innerHTML,
+		itemClass = e.classList.value.replace('gallery__item', '').trim();
+
+		console.log(itemClass);
 
 		if (isMP4 == false) {
 			let node = document.createElement("img");
 			node.setAttribute('src', file_url);
+			node.classList.add(itemClass);
 			gBack.appendChild(node);
 		} else {
 			let node = document.createElement("video");
 			node.setAttribute('src', file_url);
+			node.classList.add(itemClass);
 			node.autoplay = true;
 			// node.muted = true;
 			node.loop = true;
-			node.preload = 'metadata'
 			gBack.appendChild(node);
 		}
 

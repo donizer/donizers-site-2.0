@@ -2,14 +2,12 @@
   position: fixed;
   z-index: 100;
   top: 0;
-  width: 100%;
-  height: 100%;
   opacity: 0;
   display: none;
   background-color: rgba(0, 0, 0, 0.3215686275);
   content: "";
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
 }
 #gBack.active {
   display: block;
@@ -18,29 +16,28 @@
   justify-content: center;
   align-items: center;
 }
-#gBack img {
+#gBack img, #gBack video {
   position: fixed;
   z-index: 3;
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: cover;
-}
-#gBack video {
-  position: fixed;
-  z-index: 3;
-  max-width: 100%;
-  max-height: 100%;
+  max-width: 100vw;
+  max-height: 100vh;
   object-fit: cover;
 }
 
+@media screen and (max-width: 425px) and (orientation: portrait) {
+  #gBack img.horizontal, #gBack video.horizontal {
+    transform: rotate(90deg);
+    scale: 1.75;
+  }
+}
 @media screen and (min-width: 50px) {
   .gallery {
     position: relative;
     margin: 8px;
     display: grid;
     grid-gap: 8px;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    grid-auto-rows: minmax(70px, 140px);
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+    grid-auto-rows: minmax(35px, 70px);
     grid-auto-flow: dense;
     transition: all 0.175s ease;
   }
@@ -68,34 +65,22 @@
     left: 50%;
     transform: translate(-50%, -50%);
   }
-  .gallery__item img {
+  .gallery__item .media__container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
   .gallery__item.horizontal {
-    grid-column: span 2;
+    grid-column: span 4;
+    grid-row: span 2;
   }
   .gallery__item.vertical {
-    grid-row: span 2;
-  }
-  .gallery__item.big {
     grid-column: span 2;
-    grid-row: span 2;
+    grid-row: span 4;
   }
-  .gallery__item.video-horizontal {
-    grid-column: span 2;
-    grid-row: span 2;
-  }
-  .gallery__item.video-horizontal video {
-    height: 100%;
-  }
-  .gallery__item.video-square {
-    grid-column: span 2;
-    grid-row: span 2;
-  }
-  .gallery__item.video-square video {
-    width: 100%;
+  .gallery__item.square {
+    grid-column: span 4;
+    grid-row: span 4;
   }
   .gallery__item .url, .gallery__item .type {
     display: none;
@@ -110,6 +95,18 @@
   }
 }
 @media screen and (min-width: 769px) {
+  .gallery__item.horizontal {
+    grid-column: span 4;
+    grid-row: span 2;
+  }
+  .gallery__item.vertical {
+    grid-column: span 2;
+    grid-row: span 4;
+  }
+  .gallery__item.square {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
   .gallery__item.active {
     width: inherit;
     max-width: 100%;

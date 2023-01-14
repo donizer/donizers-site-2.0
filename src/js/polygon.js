@@ -1,8 +1,8 @@
 const pGallery = document.getElementById("gallery");
-let r34Api = "https://api.rule34.xxx/index.php?page=dapi&s=post&q=index&json=1";
+let r34Api = "https://api.rule34.xxx/index.php?page=dapi&s=post&q=index&json=1&tags=-mp4+ahri+rating:safe";
 
-let r1 = 0.6;
-let r2 = 1.6;
+let r1 = 0.85;
+let r2 = 1.5;
 
 
 async function getJSON() {
@@ -10,12 +10,12 @@ async function getJSON() {
 	return response.json();
 }
 
-function createGalleryItem(w, h, sample_url, file_url, owner, isMP4) {
+function createGalleryItem(w, h, preview_url, sample_url, file_url, owner, isMP4) {
 	const galleryItem = document.createElement('div');
 		galleryItem.setAttribute('onclick', 'galleryPreview(this);');
 		switch (true) {
 			case (w/h > r2): galleryItem.classList.add('horizontal'); break;
-			case (w/h > r1 && w/h <= r2 ): galleryItem.classList.add('big'); break;
+			case (w/h > r1 && w/h <= r2 ): galleryItem.classList.add('square'); break;
 			case (w/h < r1): galleryItem.classList.add('vertical'); break;
 		}
 		galleryItem.classList.add('gallery__item');
@@ -68,21 +68,18 @@ getJSON().then(response => {
 			owner = response[i]['owner'],
 			anySample = !!response[i]['sample'];
 			
-			file_url = `https://api-cdn.rule34.xxx/images/${dir}/${image}`;
-			preview_url = `https://api-cdn.rule34.xxx/images/${dir}/thumbnail_${hash}.jpg`;
-			sample_url = response[i]['sample_url']
-			
-		// if (anySample) {
-		// 	sample_url = `https://api-cdn.rule34.xxx/samples/${dir}/sample_${hash}.jpg`;
-		// } else {
-		// 	sample_url = `https://api-cdn.rule34.xxx/images/${dir}/${hash}.${format}`;
-		// }
-		//https://api-cdn.rule34.xxx/samples/6388/sample_679389185863f840d751f12664c9ce64.jpg
+			if (isMP4) {
+				file_url = `https://api-cdn.rule34.xxx/images/${dir}/${image}`;
+			} else {
+				file_url = response[i]['file_url'];
+			}
+			preview_url = response[i]['preview_url'];
+			sample_url = response[i]['sample_url'];
 		const
 			w = response[i]['width'],
 			h = response[i]['height'];
 			
-		createGalleryItem(w, h, sample_url, file_url, owner, isMP4, anySample);		
+		createGalleryItem(w, h, preview_url, sample_url, file_url, owner, isMP4, anySample);		
 	}
 		
 });
