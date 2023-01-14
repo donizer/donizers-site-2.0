@@ -1,5 +1,5 @@
 const pGallery = document.getElementById("gallery");
-let r34Api = "https://api.rule34.xxx/index.php?page=dapi&s=post&q=index&json=1&tags=mp4";
+let r34Api = "https://api.rule34.xxx/index.php?page=dapi&s=post&q=index&json=1";
 
 let r1 = 0.6;
 let r2 = 1.6;
