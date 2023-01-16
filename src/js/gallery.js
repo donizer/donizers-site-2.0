@@ -2,16 +2,28 @@ const body = document.getElementsByTagName('body')[0];
 const gBack = document.getElementById('gBack');
 const gallery = document.getElementById('gallery');
 const galleryItems = document.getElementsByClassName("gallery__item");
-const baseApiURL = 'https://api.rule34.xxx/index.php?page=dapi&s=post&q=index&json=1'
+const baseRule34ApiURL = 'https://api.rule34.xxx/index.php?page=dapi&s=post&q=index&json=1'
 
 
-let r34Api = `${baseApiURL}&tags=rating:safe`;
+let rule34ApiURL = `${baseRule34ApiURL}&tags=+-futa+rating:safe+sort:score:desc+league_of_legends`;
 
-let r1 = 0.85;
-let r2 = 1.5;
 
-let counter = 1;
+// TODO
+let 
+isSortable,
+sortBy,
+filterScore,
+filterRating = false;
 
+ 
+
+let checkbox = document.getElementById('test');
+
+checkbox.indeterminate = true;
+console.log(checkbox)
+
+let isModuleActive = false;
+let isSample = true;
 
 for (let i = 0; i < galleryItems.length; i++) {
 	galleryItems[i].setAttribute('onclick', 'galleryPreview(this)')
@@ -22,18 +34,20 @@ function galleryPreview(e) {
 	gBack.classList.toggle('active');
 	body.classList.toggle('noscroll');
 
-	if (counter%2 != 0) {
-		let media = e.firstElementChild.firstElementChild;
+	if (isModuleActive == false) {
 		const 
-		isMP4 = !!e.getElementsByClassName('type')[0].innerHTML,
-		file_url = e.getElementsByClassName('url')[0].innerHTML,
+		file_url = e.getElementsByClassName('file_url')[0].innerHTML,
+		sample_url = e.getElementsByClassName('sample_url')[0].innerHTML,
+		isMP4 = file_url.split('.')[file_url.split('.').length-1] === 'mp4',
 		itemClass = e.classList.value.replace('gallery__item', '').trim();
-
-		console.log(itemClass);
 
 		if (isMP4 == false) {
 			let node = document.createElement("img");
-			node.setAttribute('src', file_url);
+			if (isSample) {
+				node.setAttribute('src', sample_url);
+			} else {
+				node.setAttribute('src', file_url);
+			}
 			node.classList.add(itemClass);
 			gBack.appendChild(node);
 		} else {
@@ -46,91 +60,96 @@ function galleryPreview(e) {
 			gBack.appendChild(node);
 		}
 
-
 	} else {
 		gBack.innerHTML = '';
 	}
 
-	counter++;
+	isModuleActive = !isModuleActive;
 }
-
-
 
 async function getJSON(url) {
 	const response = await fetch(url);
 	return response.json();
 }
 
-function createGalleryItem(w, h, preview_url, sample_url, file_url, owner, isMP4) {
+function createGalleryItem(response) {
+	var
+	width = response['width'],
+	height = response['height'],
+	dir = response['directory'],
+	image = response['image'],
+	preview_url = response['preview_url'],
+	sample_url = response['sample_url'],
+	file_url = response['file_url'],
+	isMP4 = response['file_url'].split('.')[response['file_url'].split('.').length-1] === 'mp4',
+	owner = response['owner'];
+
+	// console.log(isMP4)
+
+	if (isMP4) {
+		file_url = `https://api-cdn.rule34.xxx/images/${dir}/${image}`;
+	} else {
+		file_url = response['file_url'];
+	}
+
+	let r0 = 0.333;
+	let r1 = 0.85;
+	let r2 = 1.5;
+	let r3 = 2.5;
+
 	const galleryItem = document.createElement('div');
-		galleryItem.setAttribute('onclick', 'galleryPreview(this);');
-		switch (true) {
-			case (w/h > r2): galleryItem.classList.add('horizontal'); break;
-			case (w/h > r1 && w/h <= r2 ): galleryItem.classList.add('square'); break;
-			case (w/h < r1): galleryItem.classList.add('vertical'); break;
-		}
-		galleryItem.classList.add('gallery__item');
-		gallery.appendChild(galleryItem)
-		
-		const mediaContainer = document.createElement('div');
-		mediaContainer.classList.add('media__container');
-		galleryItem.appendChild(mediaContainer)
-		
-		const img = document.createElement('img');
+	galleryItem.setAttribute('onclick', 'galleryPreview(this);');
+	switch (true) {
+		case (width/height > r3): galleryItem.classList.add('horizontal-ultra'); break;
+		case (width/height > r2): galleryItem.classList.add('horizontal'); break;
+		case (width/height > r1 && width/height <= r2 ): galleryItem.classList.add('square'); break;
+		case (width/height < r1 && width/height >= r0): galleryItem.classList.add('vertical'); break;
+		case (width/height < r0): galleryItem.classList.add('vertical-ultra'); break;
+	}
+	galleryItem.classList.add('gallery__item');
+
+	// console.log(galleryItem.classList[0])
+	const mediaContainer = document.createElement('div');
+	mediaContainer.classList.add('media__container');
+
+	var deviceWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+	const img = document.createElement('img');
+	if (deviceWidth < 426) {
 		img.setAttribute('src', sample_url)
-		mediaContainer.appendChild(img)
-		
-		const galleryItemDesc = document.createElement('div');
-		galleryItemDesc.classList.add('gallery__item-desc');
-		mediaContainer.appendChild(galleryItemDesc)
-		
-		const p = document.createElement('p');
-		p.innerHTML = `owner: ${owner}`;
-		galleryItemDesc.appendChild(p);
+	} else {
+		img.setAttribute('src', preview_url)
+	}
+	
 
-		const metaURL = document.createElement('p');
-		metaURL.classList.add('url');
-		metaURL.innerHTML = file_url;
-		galleryItemDesc.appendChild(metaURL);
+	const galleryItemDesc = document.createElement('div');
+	galleryItemDesc.classList.add('gallery__item-desc');
 
-		const metaType = document.createElement('p');
-		metaType.classList.add('type');
-		if (isMP4) {
-			metaType.innerHTML = '1';
-		} else {
-			metaType.innerHTML = '';
-		}
+	const p = document.createElement('p');
+	p.innerHTML = `owner: ${owner}`;
 
-		galleryItemDesc.appendChild(metaType);
+	const fileURLe = document.createElement('p');
+	fileURLe.classList.add('file_url');
+	fileURLe.innerHTML = file_url;
+	
+	const sampleURLe = document.createElement('p');
+	sampleURLe.classList.add('sample_url');
+	sampleURLe.innerHTML = sample_url;
+
+	gallery.appendChild(galleryItem);
+	galleryItem.appendChild(mediaContainer);
+	mediaContainer.appendChild(img);
+	mediaContainer.appendChild(galleryItemDesc);
+	galleryItemDesc.appendChild(p);
+	galleryItemDesc.appendChild(fileURLe);
+	galleryItemDesc.appendChild(sampleURLe);
 
 }
 
-getJSON(r34Api).then(response => {
+getJSON(rule34ApiURL).then(response => {
 
 	console.log(response); // fetched movies
-	for(let i = 0; i < 100; i++) {
-		const dir = response[i]['directory'],
-			image = response[i]['image'],
-			hash = response[i]['hash'],
-			score = response[i]['score'],
-			format = response[i]['image'].split('.')[response[0]['image'].split('.').length-1],
-			fileName = response[i]['image'].split('.')[0],
-			isMP4 = format === 'mp4',
-			owner = response[i]['owner'],
-			anySample = !!response[i]['sample'];
-			
-			if (isMP4) {
-				file_url = `https://api-cdn.rule34.xxx/images/${dir}/${image}`;
-			} else {
-				file_url = response[i]['file_url'];
-			}
-			preview_url = response[i]['preview_url'];
-			sample_url = response[i]['sample_url'];
-		const
-			w = response[i]['width'],
-			h = response[i]['height'];
-			
-		createGalleryItem(w, h, preview_url, sample_url, file_url, owner, isMP4, anySample);		
+	for(let i = 0; i < response.length; i++) {
+		createGalleryItem(response[i]);		
 	}
 		
 });
