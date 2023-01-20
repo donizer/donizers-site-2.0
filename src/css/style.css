@@ -28,7 +28,8 @@ nav, footer, header, aside {
 }
 
 html, body {
-  font-family: Roboto;
+  font-family: "Montserrat";
+  font-style: normal;
   height: 100%;
   width: 100%;
   font-size: 100%;
@@ -186,6 +187,9 @@ body.noscroll {
     margin: 7px 0;
     transition: 0.175s;
   }
+  header .burger.active {
+    position: fixed;
+  }
   header .burger.active::before {
     transform: translateY(12px) rotate(135deg);
   }
@@ -257,18 +261,25 @@ body.noscroll {
     color: #24252B;
   }
   main {
+    position: relative;
     overflow-x: hidden;
     height: 100%;
     display: grid;
-    grid-template-columns: 0fr 6fr;
+    grid-template-columns: 1fr;
     grid-template-rows: auto;
-    transition: all 0.175s ease;
-  }
-  main.active {
-    grid-template-columns: 1fr 0;
   }
   main .aside {
+    position: fixed;
+    z-index: 2;
+    height: 120%;
+    width: 196px;
+    transition: all 0.175s ease;
     background: linear-gradient(180deg, #24252A 0%, #412C56 100%);
+    top: 0;
+    left: -196px;
+  }
+  main .aside.active {
+    left: 0px;
   }
 }
 @media screen and (min-width: 426px) {
@@ -346,10 +357,12 @@ body.noscroll {
   main {
     height: 100%;
     display: grid;
-    grid-template-columns: 192px 6fr;
+    grid-template-columns: 196px 1fr;
     grid-template-rows: auto;
   }
   main .aside {
+    position: absolute;
+    left: 0px;
     background: linear-gradient(180deg, #24252A 0%, #412C56 100%);
   }
 }

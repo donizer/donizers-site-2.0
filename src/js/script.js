@@ -1,26 +1,32 @@
-let nav = document.getElementById('nav');
-let mBack = document.getElementById('mBack');
+const 
+body = document.getElementsByTagName('body')[0],
 
+nav = document.getElementById('nav'),
+mBack = document.getElementById('mBack'),
+burgerBtn = document.getElementById('burgerBtn'),
 
-let burgerBtn = document.getElementById('burgerBtn');
-let main = document.getElementsByTagName("main")[0];
+main = document.getElementsByTagName("main")[0],
+aside = document.getElementsByClassName("aside")[0];
 
 function burgerButton() {
 	nav.classList.toggle('active');
 	mBack.classList.toggle('active');
 	burgerBtn.classList.toggle('active');
+	body.classList.toggle('noscroll')
 }
 
 
 document.addEventListener('swiped-left', function(e) {
-	main.classList.remove('active');
-	console.log(123)
+	aside.classList.remove('active');
+	// body.classList.toggle('noscroll');
+	// console.log(123)
 	
 });
 
 document.addEventListener('swiped-right', function(e) {
-	main.classList.add('active');
-	console.log(123)
+	aside.classList.add('active');
+	// body.classList.toggle('noscroll');
+	// console.log(123)
 	
 });
 

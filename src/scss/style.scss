@@ -7,6 +7,8 @@ body{
 	background-position: 50% 25%;
 	background-attachment: fixed;
 
+	// position: fixed;
+
 	&.noscroll{
 		overflow: hidden;
 	}
@@ -110,6 +112,7 @@ body{
 				margin: 7px 0;
 				transition: 0.175s;
 			} &.active{
+				position: fixed;
 				&::before {
 					transform: translateY(12px) rotate(135deg);
 				}
@@ -186,17 +189,25 @@ body{
 		} 
 	}
 	main {
+		position: relative;
 		overflow-x: hidden;
 		height: 100%;
 		display: grid;
-		grid-template-columns: 0fr 6fr;
+		grid-template-columns: 1fr;
 		grid-template-rows: auto;
-		transition: all 0.175s ease;
-		&.active {
-			grid-template-columns: 1fr 0;
-		}
+		
 		.aside {
+			position: fixed;
+			z-index: 2;
+			height: 120%;
+			width: 196px;
+			transition: all 0.175s ease;
 			background: linear-gradient(180deg, #24252A 0%, #412C56 100%);
+			top: 0;
+			left: -196px;
+			&.active {
+				left: 0px;
+			}
 		}
 		.content {
 			// grid-column: span 11;
@@ -306,10 +317,14 @@ body{
 	main {
 		height: 100%;
 		display: grid;
-		grid-template-columns: 192px 6fr;
+		grid-template-columns: 196px 1fr;
 		grid-template-rows: auto;
 		.aside {
+			position: absolute;
+			left: 0px;
 			background: linear-gradient(180deg, #24252A 0%, #412C56 100%);
+
+			
 		}
 		.content {
 			// grid-column: span 11;

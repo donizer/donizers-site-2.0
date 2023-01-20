@@ -30,26 +30,73 @@
 		<main>
 			<div class="aside">
 				<!-- TODO -->
-				<!-- <form action=""> 
-					<input type="text" placeholder="Enter tag...">
-					<input type="submit" value="Submit"> 
-					<br><label for="nPosts">Number of posts:</label>
-					<br><label for="isGay">Is Gay:</label> 
-					<input type="radio" name="" id="">
-					<input type="radio" name="" id="">
-					<input type="radio" name="" id="">
-					<br><label for="isFuta">Is Futa:</label>
-					<input type="radio" name="" id="">
-					<input type="radio" name="" id="">
-					<input type="radio" name="" id="">
-					<br><label for="isVideo">Is Video:</label>
-					<input type="radio" name="" id="">
-					<input type="radio" name="" id="">
-					<input type="radio" name="" id="">
-				</form> -->
+				<form id="r34Filter" action=""> 
+					<input type="search" name="r34search" id="r34search" placeholder="Enter tag...">
 
-				<input id="test" type="checkbox">
+					<br><label for="minScore">Minimum score:</label>
+					<input type="number" name="minScore" id="score">
+
+					<br><label for="sort">Sort:</label>
+					<select id="sortBy" name="sortBy">
+						<option value="updated">date</option>
+						<option value="score">score</option>
+					</select>
+					<select id="sortType" name="sortType">
+						<option value="desc">▼</option>
+						<option value="asc">▲</option>
+					</select>
+
+					<fieldset id="preTags">
+						<div>
+							<label for="tagGay">Is Gay:</label> 
+							<div onclick="triChecker(this);" id="gay" class="triCheck on">
+								<div id=" -gay" class="off"></div>
+							</div>
+						</div>
+	
+						<div>
+							<label for="tagFuta">Is Futa:</label>
+							<div onclick="triChecker(this);" id="futanari" class="triCheck on">
+								<div id=" -futanari" class="off"></div>
+							</div>
+						</div>
+	
+						<div>
+							<label for="tagRating">Rating:</label>
+							<div onclick="triChecker(this);" id="rating" class="triCheck on">
+								<div id class="off"></div>
+							</div>
+						</div>
+					</fieldset>
+					<fieldset id="deTags">
+						<!-- <div onclick="selfRemove(this)">
+							vi
+						</div>
+						<div onclick="selfRemove(this)">
+							ahri
+						</div> -->
+					</fieldset>
+					
+				</form>
+				<div class="btn-container">
+					<button onclick="searchR34()"> Search </button>
+					<p id="r34Result">
+						
+					</p>
+				</div>
+
+				<script>
+					document.getElementById("r34Filter").onkeypress = function(e) {
+						var key = e.charCode || e.keyCode || 0;     
+						if (key == 13) {
+							// e.preventDefault();
+							// console.log(r34Filter)
+						}
+					} 
+				</script>
+				<!-- <input id="test" type="checkbox"> -->
 			</div>
+			<div></div>
 			<div id="content" class="content">
 				<div id="gallery" class="gallery">
 					
