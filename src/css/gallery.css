@@ -23,6 +23,41 @@
   max-height: 100vh;
   object-fit: cover;
 }
+#gBack .close-btn {
+  z-index: 4;
+  position: absolute;
+  top: 50px;
+  right: 0;
+  width: 50px;
+  height: 50px;
+  background-color: rgba(0, 0, 0, 0.3);
+  opacity: 1;
+  transform: translate(-50%, -50%);
+}
+#gBack .close-btn::before, #gBack .close-btn::after {
+  background: #fff;
+  content: "";
+  display: block;
+  height: 6px;
+  border-radius: 3px;
+  margin: 7px 0;
+  transition: 0.175s;
+}
+#gBack .close-btn::before {
+  transform: translateY(12px) rotate(135deg);
+}
+#gBack .close-btn::after {
+  transform: translateY(0px) rotate(-135deg);
+}
+#gBack .close-btn:hover {
+  position: fixed;
+}
+#gBack .close-btn:hover::before {
+  transform: translateY(12px) rotate(140deg);
+}
+#gBack .close-btn:hover::after {
+  transform: translateY(0) rotate(-140deg);
+}
 #gBack .vertical-ultra {
   width: 100%;
 }
@@ -85,17 +120,17 @@
   #r34Filter .triCheck > div.off {
     background-color: rgb(255, 0, 0);
   }
-  .btn-container {
+  #r34Filter .btn-container {
     display: flex;
     flex-direction: column;
     gap: 8px;
   }
-  .btn-container button, .btn-container p {
+  #r34Filter .btn-container button, #r34Filter .btn-container p {
     font-size: 18px;
     max-width: 192px;
     justify-content: center;
   }
-  .btn-container p {
+  #r34Filter .btn-container p {
     color: #fff;
   }
   #preTags {

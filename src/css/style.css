@@ -175,8 +175,8 @@ body.noscroll {
     position: absolute;
     top: 28px;
     right: -8px;
-    transform: translate(-50%, -50%);
     width: 50px;
+    transform: translate(-50%, -50%);
   }
   header .burger::before, header .burger::after, header .burger div {
     background: #fff;
@@ -280,6 +280,10 @@ body.noscroll {
   }
   main .aside.active {
     left: 0px;
+  }
+  main .content {
+    grid-column: span -1;
+    width: 100%;
   }
 }
 @media screen and (min-width: 426px) {

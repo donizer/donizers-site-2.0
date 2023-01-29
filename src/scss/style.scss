@@ -101,8 +101,8 @@ body{
 			top: 28px;
 			right: -8px;
 			// height: 40px;
-			transform: translate(-50%, -50%);
 			width: 50px;
+			transform: translate(-50%, -50%);
 			&::before, &::after, & div{
 				background: #fff;
 				content: "";
@@ -210,9 +210,8 @@ body{
 			}
 		}
 		.content {
-			// grid-column: span 11;
-			// background-color: #000;
-			// width: 100%;
+			grid-column: span -1;
+			width: 100%;
 		}
 	}
 }
@@ -235,9 +234,7 @@ body{
 			background: linear-gradient(180deg, #24252A 0%, #412C56 100%);
 		}
 		.content {
-			// grid-column: span 11;
-			// background-color: #000;
-			// width: 100%;
+
 		}
 	}
 }

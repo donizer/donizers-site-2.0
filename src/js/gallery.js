@@ -127,8 +127,13 @@ function galleryPreview(e) {
 			node.setAttribute('src', file_url);
 			node.classList.add(itemClass);
 			node.autoplay = true;
-			// node.muted = true;
+			node.controls = true;
 			node.loop = true;
+	
+			let close = document.createElement("div");
+			close.classList.add('close-btn');
+
+			gBack.appendChild(close);
 			gBack.appendChild(node);
 		}
 
