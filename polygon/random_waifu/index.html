@@ -7,6 +7,7 @@
 	<link rel="icon" href="../../src/img/favicon.svg">
 	<link rel="stylesheet" href="../../src/css/style.css">
 	<link rel="stylesheet" href="../../src/css/gallery.css">
+	<link rel="stylesheet" href="waifu.css">
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,9 +32,14 @@
 			<div class="aside">
 
 			</div>
+			<div></div>
 			<div class="content">
-				<div id="gallery" class="gallery">
-
+				<div id="gallery" class="gallery-flex">
+					<div class="gallery-flex__item">
+						<img id="img" src="https://i.waifu.pics/MHrvoGY.jpg" 
+						role="button"
+						onclick="findWaifu(this)">
+					</div>
 				</div>
 			</div>
 		</main>
@@ -51,9 +57,7 @@
 
 
 	<script src="../../src/js/script.js"></script>
-	<!-- <script src="../../src/js/gallery.js"></script> -->
-	<script src="../../src/js/swiped-events.min.js"></script>
-	<script src="fatal.js"></script>
+	<script src="waifu.js"></script>
 </body>
 
 </html>

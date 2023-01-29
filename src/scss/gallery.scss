@@ -192,6 +192,9 @@
 	}
 
 	.gallery {
+		
+		width: 100%;
+		height: 100%;
 
 		position: relative;
 		margin: 8px;
@@ -251,6 +254,12 @@
 			} &.square {
 				grid-column: span 4;
 				grid-row: span 4;
+			} &.full{
+				grid-column: span -1;
+				grid-row: span 10;
+
+				// width: 100%;
+				// height: 100%;
 			} .file_url, .sample_url {
 				display: none;
 			}
