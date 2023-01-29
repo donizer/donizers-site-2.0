@@ -29,7 +29,6 @@
 
 		<main>
 			<div class="aside">
-				<!-- TODO -->
 				<form id="r34Filter" action=""> 
 					<input type="search" name="r34search" id="r34search" placeholder="Enter tag...">
 
@@ -38,7 +37,7 @@
 
 					<br><label for="sort">Sort:</label>
 					<select id="sortBy" name="sortBy">
-						<option value="updated">date</option>
+						<option value="id">date</option>
 						<option value="score">score</option>
 					</select>
 					<select id="sortType" name="sortType">
@@ -76,15 +75,13 @@
 							ahri
 						</div> -->
 					</fieldset>
-					
+					<div class="btn-container">
+						<button onclick="preventDefault(); searchR34();"> Search </button>
+						<p id="r34Result">
+							
+						</p>
+					</div>
 				</form>
-				<div class="btn-container">
-					<button onclick="searchR34()"> Search </button>
-					<p id="r34Result">
-						
-					</p>
-				</div>
-
 				<script>
 					document.getElementById("r34Filter").onkeypress = function(e) {
 						var key = e.charCode || e.keyCode || 0;     
@@ -115,6 +112,7 @@
 	</div>
 
 	<script src="../src/js/script.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/exif-js"></script>
 	<script src="../src/js/gallery.js"></script>
 	<script src="../src/js/swiped-events.min.js"></script>
 </body>

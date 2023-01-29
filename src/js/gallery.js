@@ -6,17 +6,15 @@ const baseRule34ApiTagsURL = 'https://api.rule34.xxx/index.php?page=dapi&s=tag&q
 const r34Filter = document.getElementById('r34Filter');
 const r34Result = document.getElementById('r34Result');
 
+let searchTags = document.getElementById('r34search').value;
+let score = document.getElementById('score').value;
 
+let sortBy = document.getElementById('sortBy').value;
+let sortType = document.getElementById('sortType').value;
 
-// let rule34ApiURL = `${baseRule34ApiURL}&tags=+-futa+rating:safe+sort:score:desc+league_of_legends`;
-let rule34ApiURL = createR34Link();
-
-// TODO
-let 
-isSortable,
-sortBy,
-filterScore,
-filterRating = false;
+let gay = document.getElementById('gay').firstElementChild.id;
+let futa = document.getElementById('futanari').firstElementChild.id;
+let rating = document.getElementById('rating').firstElementChild.id;
 
 
 let isModuleActive = false;
@@ -28,39 +26,35 @@ for (let i = 0; i < galleryItems.length; i++) {
 
 function createR34Link() {
 
-	let gay = document.getElementById('gay').firstElementChild.id;
-	let futa = document.getElementById('futanari').firstElementChild.id;
-	let rating = document.getElementById('rating').firstElementChild.id;
+	searchTags = document.getElementById('r34search').value;
+	score = document.getElementById('score').value;
 
-	let sortBy = document.getElementById('sortBy').value;
-	let sortType = document.getElementById('sortType').value;
-	let sort = ` sort:${sortBy}:${sortType}`
-
-	let searhTags = document.getElementById('r34search').value.split(' ');
-	let tagsString = '';
-
-	if (searhTags[0] == '') {
-		tagsString = '';
+	if (score <=0) {
+		score = ''
 	} else {
-
-		for (let i = 0; i < searhTags.length; i++) {
-			tagsString += ` ${searhTags[i]}`;
-		}
-	
+		score = ` score:>=${score}`
 	}
+	console.log(score)
 
-	let score = document.getElementById('score').value;
-	if (!score) {
-		score = ` score:>=0`;
-	} else {
-		score = ` score:>=${document.getElementById('score').value}`;
-	}
+	sortBy = document.getElementById('sortBy').value;
+	sortType = document.getElementById('sortType').value;
+	sort = ` sort:${sortBy}:${sortType}`
 	
+	gay = document.getElementById('gay').firstElementChild.id;
+	futa = document.getElementById('futanari').firstElementChild.id;
+	rating = document.getElementById('rating').firstElementChild.id;
 
 	let link = 
-	`${baseRule34ApiURL}&tags=${tagsString}${gay}${futa}${rating}${sort}${score}`
+	`${baseRule34ApiURL}&tags=${searchTags}${gay}${futa}${rating}${sort}${score}`
 
 	localStorage.setItem("linkR34", link);
+	localStorage.setItem("r34search", searchTags);
+	localStorage.setItem("score", score);
+	localStorage.setItem("sortBy", sortBy);
+	localStorage.setItem("sortType", sortType);
+	localStorage.setItem("gay", gay);
+	localStorage.setItem("futanari", futa);
+	localStorage.setItem("rating", rating);
 	
 	return link;
 }
@@ -69,48 +63,37 @@ function selfRemove(e) {
 	e.parentNode.removeChild(e);
 }
 
-let counter = document.getElementById('preTags').children;
-counter = new Array(counter.length);
-for(let i = 0; i < counter.length; i++) {
-	counter[i]=0;
-}
-
 function triChecker(e) {
 	let tag = e.id;
-	let colors = e.firstElementChild;
-	let state = colors.classList[0];
-
-	console.log(colors.classList[0])
-
-
+	let triCheckInner = e.firstElementChild;
+	let state = triCheckInner.classList[0];
 
 	if (state === 'off') {
-		colors.removeAttribute('class');
-		colors.classList.toggle('on');
+		triCheckInner.removeAttribute('class');
+		triCheckInner.classList.toggle('on');
 		if (tag == 'rating') {
-			colors.id = ' rating:safe'
+			triCheckInner.id = ' rating:safe'
 		} else {
-			colors.id = ` ${tag}`;
+			triCheckInner.id = ` ${tag}`;
 		}
 
 	} else if (state === 'on') {
-		colors.removeAttribute('class');
-		colors.classList.toggle('mid');
+		triCheckInner.removeAttribute('class');
+		triCheckInner.classList.toggle('mid');
 		if (tag == 'rating') {
-			colors.id = ' (rating:safe ~ rating:questionable)'
+			triCheckInner.id = ' ( rating:safe ~ rating:questionable )'
 		} else {
-			colors.id = ``;
+			triCheckInner.id = ``;
 		}
 	} else if (state === 'mid') {
-		colors.removeAttribute('class');
-		colors.classList.toggle('off');
+		triCheckInner.removeAttribute('class');
+		triCheckInner.classList.toggle('off');
 		if (tag == 'rating') {
-			colors.id = ''
+			triCheckInner.id = ''
 		} else {
-			colors.id = ` -${tag}`;
+			triCheckInner.id = ` -${tag}`;
 		}
 	} 
-
 }
 
 async function getJSON(url) {
@@ -156,8 +139,9 @@ function galleryPreview(e) {
 	isModuleActive = !isModuleActive;
 }
 
+
 function createGalleryItem(response) {
-	var
+	let
 	width = response['width'],
 	height = response['height'],
 	dir = response['directory'],
@@ -168,9 +152,9 @@ function createGalleryItem(response) {
 	isMP4 = response['file_url']
 		.split('.')[response['file_url']
 		.split('.').length-1] === 'mp4',
-	owner = response['owner'];
-
-	// console.log(isMP4)
+	owner = response['owner'],
+	id = response['id'],
+	score = response['score'];
 
 	if (isMP4) {
 		file_url = `https://api-cdn.rule34.xxx/images/${dir}/${image}`;
@@ -242,114 +226,55 @@ async function searchR34() {
 
 	gallery.innerHTML = '';
 	r34Result.innerHTML = `Found 0 items`
-	console.log(createR34Link()) 
+
 	await getJSON(createR34Link()).then(response => {
 
-		console.log(123)
+		r34Result.innerHTML = `Found ${response.length} items`;
 
-		r34Result.innerHTML = `Found ${response.length} items`
-		console.log(); // fetched movies
 		for(let i = 0; i < response.length; i++) {
+
+			if (response[i].id === 0) {
+				continue;
+			}
 			createGalleryItem(response[i]);		
 		}
-
-
 	})
-
-	if (gallery.innerHTML == '') {
-		
-		gallery.innerHTML = 'No results found'
-	}
 }
 
 if (localStorage.getItem("linkR34") != "") {
+
+	localStorage.getItem("linkR34");
+	searchTags = localStorage.getItem("r34search");
+	score = localStorage.getItem("score");
+	sortBy = localStorage.getItem("sortBy");
+	sortType = localStorage.getItem("sortType");
+	gay = localStorage.getItem("gay");
+	fute = localStorage.getItem("futanari");
+	rating = localStorage.getItem("rating");
+
 	getJSON(localStorage.getItem("linkR34")).then(response => {
-		
-		r34Result.innerHTML = `Found ${response.length} items`
+		r34Result.innerHTML = `Found ${response.length} items`;
+
 		for(let i = 0; i < response.length; i++) {
+
+			if (response[i].id === 0) {
+				continue;
+			}
 			createGalleryItem(response[i]);		
 		}
-			
 	});
 } else {
 	searchR34()
 }
 
 document.querySelectorAll('.triCheck').forEach(function(e){
-	e.addEventListener('click', (e) =>{
+	e.addEventListener('click', () =>{
 		searchR34()
 	});
 });
-
 
 r34Filter.addEventListener('change', function() {
     getJSON(createR34Link()).then(response => {
 		searchR34()	
 	})
 });
-
-
-
-// async function getXML(url) {
-// 	const response = await fetch(url);
-// 	return response;
-// }
-
-// getXML(baseRule34ApiTagsURL).then(response => {
-
-// 	console.log(response)
-
-// });
-
-// 0.7
-// 0.84
-// 1.07
-// 1.43
-
-
-
-// let r1 = 0.7;
-// let r2 = 0.84;
-// let r3 = 1.07;
-// let r4 = 1.43;
-
-
-
-// a = 480;
-// b = 650;
-// // 0.7
-// console.log(`${a}/${b} = ${a/b} > ${r1} : ${a/b > r1}`)
-// console.log(`${a}/${b} = ${a/b} > ${r2} : ${a/b > r2}`)
-// console.log(`${a}/${b} = ${a/b} > ${r3} : ${a/b > r3}`)
-// console.log(`${a}/${b} = ${a/b} > ${r4} : ${a/b > r4}`)
-
-// console.log('#####################')
-
-// a = 550;
-// b = 650;
-// // 0.84
-// console.log(`${a}/${b} = ${a/b} > ${r1} : ${a/b > r1}`)
-// console.log(`${a}/${b} = ${a/b} > ${r2} : ${a/b > r2}`)
-// console.log(`${a}/${b} = ${a/b} > ${r3} : ${a/b > r3}`)
-// console.log(`${a}/${b} = ${a/b} > ${r4} : ${a/b > r4}`)
-
-// console.log('#####################')
-
-
-// a = 700;
-// b = 650;
-// // 1.07
-// console.log(`${a}/${b} = ${a/b} > ${r1} : ${a/b > r1}`)
-// console.log(`${a}/${b} = ${a/b} > ${r2} : ${a/b > r2}`)
-// console.log(`${a}/${b} = ${a/b} > ${r3} : ${a/b > r3}`)
-// console.log(`${a}/${b} = ${a/b} > ${r4} : ${a/b > r4}`)
-
-// console.log('#####################')
-
-// a = 935;
-// b = 650;
-// // 1.43
-// console.log(`${a}/${b} = ${a/b} > ${r1} : ${a/b > r1}`)
-// console.log(`${a}/${b} = ${a/b} > ${r2} : ${a/b > r2}`)
-// console.log(`${a}/${b} = ${a/b} > ${r3} : ${a/b > r3}`)
-// console.log(`${a}/${b} = ${a/b} > ${r4} : ${a/b > r4}`)
