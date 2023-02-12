@@ -1,5 +1,5 @@
 const 
-body = document.getElementsByTagName('body')[0],
+body = document.body,
 
 nav = document.getElementById('nav'),
 mBack = document.getElementById('mBack'),
